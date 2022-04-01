@@ -1,0 +1,105 @@
+<svg id="Onboarding_Page_3" data-name="Onboarding_Page 3" xmlns="http://www.w3.org/2000/svg" width="375" height="776" viewBox="0 0 375 776">
+  <g id="Phone_screen">
+    <rect id="Rectangle_2" data-name="Rectangle 2" width="375" height="33" fill="#fff"/>
+    <g id="battery">
+      <rect id="Rectangle_8" data-name="Rectangle 8" width="9.8" height="6.3" rx="1" transform="translate(325.8 13.8)" fill="#acbac3"/>
+      <g id="Group">
+        <path id="Vector" d="M323,12.887v8.039a1.889,1.889,0,0,0,1.887,1.887h14.6a1.889,1.889,0,0,0,1.887-1.887V12.887A1.889,1.889,0,0,0,339.488,11h-14.6A1.889,1.889,0,0,0,323,12.887Zm17.063,8.039a.575.575,0,0,1-.575.574h-14.6a.574.574,0,0,1-.574-.574V12.887a.574.574,0,0,1,.574-.574h14.6a.575.575,0,0,1,.575.574Z" fill="#acbac3"/>
+        <path id="Vector_2" d="M340.063,14.281v5.25a.656.656,0,0,0,.656.656h1.8A1.478,1.478,0,0,0,344,18.711V15.1a1.478,1.478,0,0,0-1.477-1.477h-1.8A.656.656,0,0,0,340.063,14.281Zm1.312,4.594V14.938h1.148a.165.165,0,0,1,.165.164v3.609a.165.165,0,0,1-.165.164Z" fill="#acbac3"/>
+      </g>
+    </g>
+    <g id="signal">
+      <path id="signal_2" d="M303.7,22.111c.388,0,.7-.212.7-.473V10.473c0-.261-.315-.473-.7-.473s-.7.212-.7.473V21.638C303,21.9,303.315,22.111,303.7,22.111Zm2.074-.473V12.389c0-.261.315-.473.7-.473s.7.212.7.473v9.249c0,.261-.315.473-.7.473S305.777,21.9,305.777,21.638Zm2.778,0V14.281c0-.261.314-.473.7-.473s.7.212.7.473v7.356c0,.261-.315.473-.7.473S308.555,21.9,308.555,21.638Zm2.777,0V16.174c0-.261.315-.473.7-.473s.7.212.7.473v5.464c0,.261-.314.473-.7.473S311.332,21.9,311.332,21.638Zm2.777,0V18.066c0-.261.315-.473.7-.473s.7.212.7.473v3.572c0,.261-.315.473-.7.473S314.109,21.9,314.109,21.638Z" fill="#acbac3"/>
+    </g>
+    <text id="_8:26" data-name="8:26" transform="translate(29 19.03)" fill="#acbac3" font-size="12" font-family="SegoeUI, Segoe UI"><tspan x="0" y="0">8:26</tspan></text>
+  </g>
+  <g id="Next_button">
+    <g id="Square">
+      <rect id="Rectangle_6" data-name="Rectangle 6" width="150" height="60" rx="30" transform="translate(196 716)" fill="#126881"/>
+    </g>
+    <text id="NEXT" transform="translate(244.317 751.138)" fill="#fff" font-size="14" font-family="Quicksand-Bold, Quicksand" font-weight="700"><tspan x="0" y="0">SIGN IN</tspan></text>
+  </g>
+  <g id="Illustration">
+    <path id="city_background" data-name="city background" d="M76.5,229H59a1,1,0,0,0-1,1v93.5a1,1,0,0,0,1,1H315.992a1,1,0,0,0,1-1V179.189a1,1,0,0,0-.644-.935l-25.491-9.736a1,1,0,0,0-1.357.934V212a1,1,0,0,1-1,1H269a1,1,0,0,1-1-1V187.52a1,1,0,0,0-1.4-.918l-27,11.638a1,1,0,0,0-.6.918V212a1,1,0,0,1-1,1H222a1,1,0,0,1-1-1V159a1,1,0,0,0-1-1h-6.5a1,1,0,0,1-1-1v-9.5a1,1,0,0,0-1-1h-6a1,1,0,0,1-1-1V131a1,1,0,0,0-1-1H202a1,1,0,0,1-1-1V117a1,1,0,0,0-1-1h-1.5a1,1,0,0,0-1,1v12a1,1,0,0,1-1,1H195a1,1,0,0,0-1,1v14.5a1,1,0,0,1-1,1h-7a1,1,0,0,0-1,1V157a1,1,0,0,1-1,1h-6a1,1,0,0,0-1,1v38.5a1,1,0,0,1-1,1H155a1,1,0,0,1-1-1V168.7a1,1,0,0,0-.657-.939l-29.5-10.77a1,1,0,0,0-1.343.94V218.5a1,1,0,0,1-1,1h-18a1,1,0,0,1-1-1v-19a1,1,0,0,0-1-1h-23a1,1,0,0,0-1,1V228A1,1,0,0,1,76.5,229Z" fill="#f6f6f7"/>
+    <g id="Street">
+      <rect id="Rectangle_186" data-name="Rectangle 186" width="59" height="3" rx="1.5" transform="translate(125 348.5)" fill="#acbac3"/>
+      <rect id="Rectangle_187" data-name="Rectangle 187" width="40" height="3" rx="1.5" transform="translate(192 348.5)" fill="#acbac3"/>
+      <rect id="Rectangle_189" data-name="Rectangle 189" width="26" height="3" rx="1.5" transform="translate(91 348.5)" fill="#acbac3"/>
+      <rect id="Rectangle_190" data-name="Rectangle 190" width="8" height="3" rx="1.5" transform="translate(75 348.5)" fill="#acbac3"/>
+      <rect id="Rectangle_191" data-name="Rectangle 191" width="8" height="3" rx="1.5" transform="translate(262 348.5)" fill="#acbac3"/>
+      <rect id="Rectangle_192" data-name="Rectangle 192" width="5" height="3" rx="1.5" transform="translate(278 348.5)" fill="#acbac3"/>
+      <rect id="Rectangle_188" data-name="Rectangle 188" width="14" height="3" rx="1.5" transform="translate(240 348.5)" fill="#acbac3"/>
+    </g>
+    <g id="Delivey_Man" data-name="Delivey Man">
+      <g id="motorcycle_tires" data-name="motorcycle tires">
+        <circle id="Ellipse_51" data-name="Ellipse 51" cx="21.367" cy="21.367" r="21.367" transform="translate(224.268 306.207)" fill="#721d47"/>
+        <circle id="Ellipse_52" data-name="Ellipse 52" cx="13.416" cy="13.416" r="13.416" transform="translate(232.217 314.157)" fill="#fff"/>
+        <circle id="Ellipse_53" data-name="Ellipse 53" cx="7.453" cy="7.453" r="7.453" transform="translate(238.181 320.12)" fill="#721d47"/>
+        <rect id="Rectangle_53" data-name="Rectangle 53" width="2.981" height="12.919" transform="translate(244.143 313.163)" fill="#721d47"/>
+        <rect id="Rectangle_56" data-name="Rectangle 56" width="2.981" height="12.919" transform="translate(260.912 334.171) rotate(118.179)" fill="#721d47"/>
+        <rect id="Rectangle_57" data-name="Rectangle 57" width="2.981" height="12.919" transform="translate(241.618 328.07) rotate(61.821)" fill="#721d47"/>
+      </g>
+      <g id="hand_and_feet" data-name="hand and feet">
+        <path id="Vector_106" data-name="Vector 106" d="M217.311,251.627c-2.783.4-5.135.828-5.963,1.49v4.969a6.118,6.118,0,0,0,4.969-2.484c.994-1.491,3.478-1.491,4.969-.5s2.981,0,2.484-.994S220.789,251.13,217.311,251.627Z" fill="#fff2d1"/>
+        <path id="Vector_93" data-name="Vector 93" d="M198.429,296.766c1.49-3.976-2.485-6.957-4.969-6.957L187,270.927c6.128,3.644,20.571,12.124,23.354,14.907,3.478,3.478,1.491,7.95,0,12.919-1.193,3.975-4.472,10.435-8.944,17.391l-6.46-.993C196.11,308.857,197.236,299.946,198.429,296.766Z" fill="#04556c"/>
+      </g>
+      <g id="Motorcycle">
+        <rect id="Rectangle_47" data-name="Rectangle 47" width="14.082" height="5.963" rx="2" transform="translate(112.039 304.155) rotate(-53.608)" fill="#721d47"/>
+        <path id="Vector_99" data-name="Vector 99" d="M124.888,292.294c4.373-5.466,9.938-5.3,12.423-5.466h4.472l-33.292,34.285L107,318.629C111.969,311.507,121.708,296.269,124.888,292.294Z" fill="#fbb017"/>
+        <path id="Vector_102" data-name="Vector 102" d="M214.461,272.072l9.309-5.12,14.41,26.832-17.888,30.808-8.447,6.459s-61.615,1.491-63.106-.993-3.478-8.448-5.963-13.914,27.33-25.838,27.33-25.838l19.875,6.46c-.662,1.987-2.285,6.956-3.478,10.931-1.491,4.969,2.981,7.454,6.957,7.454h18.385c10.434,0,7.453-15.4,6.459-19.379-.767-3.069-3.138-15.947-4.345-22.649A1,1,0,0,1,214.461,272.072Z" fill="#fbba32"/>
+        <path id="Ellipse_50" data-name="Ellipse 50" d="M226.74,262.7a5.884,5.884,0,1,0-3.467-11.246Z" fill="#fff"/>
+        <path id="Vector_105" data-name="Vector 105" d="M209.487,262.147,213.4,271.4a1,1,0,0,0,1.4.486l9.794-5.4a5,5,0,0,0,2.328-5.959l-3.156-9.468a13.643,13.643,0,0,0-9.441,2.485,24.117,24.117,0,0,0-4.125,3.753A4.562,4.562,0,0,0,209.487,262.147Z" fill="#fed883"/>
+        <path id="Vector_101" data-name="Vector 101" d="M146.33,286.331c-12.217,0-23.364,12.158-28.852,20.909a4.176,4.176,0,0,0,2.455,6.28c11.913,3.49,31.159,6.428,40.625,7.487,13.682,1.531,21.79-14.773,16.216-23.959s-16.723-10.717-21.284-10.717Z" fill="#fff0cd"/>
+        <path id="Vector_98" data-name="Vector 98" d="M143.77,286.828c-11.5,0-20.768,10.9-25.86,19.312a4.542,4.542,0,0,0,3.192,6.778c11.738,2.34,29.615,5.71,38.569,6.7,13.416,1.49,21.366-13.416,15.9-22.36s-16.4-10.435-20.87-10.435Z" fill="#fed883"/>
+        <rect id="Rectangle_52" data-name="Rectangle 52" width="4.548" height="0.954" rx="0.477" transform="translate(216.605 248.408) rotate(76.998)" fill="#721d47"/>
+        <path id="Vector_95" data-name="Vector 95" d="M135.329,287.325H155.7c9.938,0,13.913,3.975,25.341,7.453s14.41,3.478,14.41-6.46-17.391-10.434-22.857-10.434H138.323a3.994,3.994,0,0,0-3.994,4v4.441A1,1,0,0,0,135.329,287.325Z" fill="#721d47"/>
+        <ellipse id="Ellipse_49" data-name="Ellipse 49" cx="3.054" cy="4.581" rx="3.054" ry="4.581" transform="translate(211.348 242.03) rotate(-13.377)" fill="#721d47"/>
+        <rect id="Rectangle_51" data-name="Rectangle 51" width="11.925" height="3.975" rx="1.988" transform="translate(203.398 258.505)" fill="#721d47"/>
+        <path id="Vector_100" data-name="Vector 100" d="M244.64,288.815v4.969c-3.478,0-4.969,2.485-5.963,3.975h0c-.995,1.492-13.913,20.869-18.385,27.329-3.578,5.167-6.957,8.447-11.926,8.447H153.708c-3.975,0-6.128-4.969-6.46-6.957h61.118c5.466,0,5.963-1.49,9.441-4.969s9.938-14.41,12.423-19.875,0-12.423-.994-14.41-4.472-9.938-6.956-15.9c-1.988-4.77,2.02-6.957,4.173-6.957Z" fill="#fff0cd"/>
+        <path id="Vector_96" data-name="Vector 96" d="M245.634,291.485v3.293c-3.479,0-4.969,2.485-5.963,3.975s-13.913,20.87-18.385,27.329c-3.578,5.168-6.957,7.454-11.926,7.454H153.708c-3.975,0-5.631-3.975-5.963-5.963H209.36c5.466,0,5.963-1.491,9.441-4.969s9.938-14.41,12.423-19.876.993-12.422,0-14.41h0c-.994-1.988-5.466-10.931-7.951-16.894-1.987-4.77,1.822-5.963,3.976-5.963l17.375,23.011A5,5,0,0,1,245.634,291.485Z" fill="#fed883"/>
+        <path id="Vector_97" data-name="Vector 97" d="M262.528,310.679c0-12.721-11.925-16.232-17.888-16.4-1.491,0-2.982,1.491-4.472,3.478-1.193,1.59-11.429,17.226-16.4,24.845h3.975c6.46-6.956,11.926-11.925,16.9-11.925Z" fill="#fbba32"/>
+      </g>
+      <g id="motorcycle_tires_2" data-name="motorcycle tires_2">
+        <circle id="Ellipse_51_2" data-name="Ellipse 51_2" cx="21.367" cy="21.367" r="21.367" transform="translate(112.963 306.207)" fill="#721d47"/>
+        <circle id="Ellipse_52_2" data-name="Ellipse 52_2" cx="13.416" cy="13.416" r="13.416" transform="translate(120.913 314.157)" fill="#fff"/>
+        <circle id="Ellipse_53_2" data-name="Ellipse 53_2" cx="7.453" cy="7.453" r="7.453" transform="translate(126.876 320.12)" fill="#721d47"/>
+        <rect id="Rectangle_53_2" data-name="Rectangle 53_2" width="2.981" height="12.919" transform="translate(132.839 313.163)" fill="#721d47"/>
+        <rect id="Rectangle_56_2" data-name="Rectangle 56_2" width="2.981" height="12.919" transform="translate(149.607 334.171) rotate(118.179)" fill="#721d47"/>
+        <rect id="Rectangle_57_2" data-name="Rectangle 57_2" width="2.981" height="12.919" transform="translate(130.313 328.07) rotate(61.821)" fill="#721d47"/>
+      </g>
+      <g id="Box">
+        <rect id="Rectangle_7" data-name="Rectangle 7" width="26.148" height="26.148" transform="translate(127.87 251.548)" fill="#ffd1b5"/>
+        <rect id="Rectangle_8_2" data-name="Rectangle 8_2" width="13.668" height="26.148" transform="translate(154.018 251.548)" fill="#d79e7b"/>
+        <rect id="Rectangle_11" data-name="Rectangle 11" width="0.594" height="26.148" transform="translate(140.349 251.548)" fill="#d79e7b"/>
+        <rect id="Rectangle_9" data-name="Rectangle 9" width="2.971" height="4.754" transform="translate(159.366 251.548)" fill="#ffebde"/>
+        <rect id="Rectangle_10" data-name="Rectangle 10" width="2.971" height="4.754" transform="translate(159.366 272.942)" fill="#ffebde"/>
+      </g>
+      <g id="Human">
+        <path id="Vector_91" data-name="Vector 91" d="M212.342,252.045l-22.858-3.478v9.938c6.361.4,17.226.165,21.864,0Z" fill="#f8975b"/>
+        <rect id="Rectangle_44" data-name="Rectangle 44" width="15.352" height="23.875" rx="5" transform="translate(191.938 204.201) rotate(21.987)" fill="#fff2d1"/>
+        <rect id="Rectangle_45" data-name="Rectangle 45" width="13.321" height="7.92" rx="3.96" transform="translate(182.014 233.342) rotate(-63.002)" fill="#fff2d1"/>
+        <path id="Ellipse_47" data-name="Ellipse 47" d="M188.728,202.4a13.418,13.418,0,0,0,1.753,26.548l3.8-13.975,8.77.783.587-4.677C202.37,204.744,194.989,201.15,188.728,202.4Z" fill="#126881"/>
+        <rect id="Rectangle_43" data-name="Rectangle 43" width="16.017" height="5.963" rx="2.981" transform="matrix(0.98, 0.198, -0.198, 0.98, 192.862, 208.894)" fill="#fed883"/>
+        <circle id="Ellipse_48" data-name="Ellipse 48" cx="0.994" cy="0.994" r="0.994" transform="translate(194.086 211.465) rotate(-11.29)" fill="#126881"/>
+        <rect id="Rectangle_46" data-name="Rectangle 46" width="5.047" height="7.212" transform="translate(192.69 316.089) rotate(13.977)" fill="#fff2d1"/>
+        <path id="Vector_94" data-name="Vector 94" d="M205.882,256.517c-2.783.4-5.135.828-5.963,1.491v4.969a6.115,6.115,0,0,0,4.969-2.485c.994-1.49,3.479-1.49,4.969-.5s2.982,0,2.485-.993S209.36,256.02,205.882,256.517Z" fill="#fff2d1"/>
+        <path id="Vector_3" d="M190.952,322.826s3.544.573,4,.576c.994,0,1.177-.589,1.491-1.3,0,0,5.24,2.91,5.666,3.3s.476,1.673-.4,1.67-10.275-.029-10.729-.016c-.756.023-1.076-.638-.994-1.366A21.725,21.725,0,0,1,190.952,322.826Z" fill="#57636f"/>
+        <path id="Vector_92" data-name="Vector 92" d="M160.168,276.89v-6.46H186.5c6.129,3.644,19.081,11.628,21.863,14.41,3.479,3.478,1.491,7.95,0,12.919-1.192,3.976-7.784,16.895-10.931,22.858l-5.963-1.988c1.16-6.294,3.776-19.677,4.969-22.857,1.491-3.975-2.484-3.975-4.969-3.975s-8.447,0-18.882-2.982S160.168,280.368,160.168,276.89Z" fill="#126881"/>
+        <path id="Vector_90" data-name="Vector 90" d="M190.478,234.157c-3.975-1.988-5.631-4.8-5.962-5.963-15.4,3.975-24.845,21.864-26.336,28.323-1.192,5.168.828,8.116,1.988,8.944a19.4,19.4,0,0,0-.885,5.223l-.008.109a1.048,1.048,0,0,0,1.032,1.128h28.184v-4.969c4.372,0,10.1-1.656,12.422-2.485v-7.453H190.478Z" fill="#ffa771"/>
+        <path id="Vector_90_2" data-name="Vector 90_2" d="M197.578,226.9c-.8,0-2.135-.521-1.1-2.557" fill="none" stroke="#126881" stroke-linecap="round" stroke-width="0.3"/>
+        <path id="Vector_64" data-name="Vector 64" d="M197.381,220.806a1.372,1.372,0,0,1,1.831.773" fill="none" stroke="#126881" stroke-linecap="round" stroke-width="0.3"/>
+        <path id="Vector_65" data-name="Vector 65" d="M197.647,217.093a2.484,2.484,0,0,1,2.747,1.158" fill="none" stroke="#126881" stroke-linecap="round" stroke-width="0.3"/>
+        <path id="Vector_107" data-name="Vector 107" d="M201.94,224.707l-.762-2.972-1.588,3.91,1.947-.32A.5.5,0,0,0,201.94,224.707Z" fill="#fff2d1"/>
+      </g>
+    </g>
+    <path id="Line_01" d="M135,265.5H86" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="1"/>
+    <path id="Line_02" d="M130,258.5H103" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="1"/>
+    <path id="Line_03" d="M117,272.5H97" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="1"/>
+  </g>
+  <text id="EXPRESS_DELIVERY" data-name="EXPRESS DELIVERY" transform="translate(107.466 448.192)" fill="#57636f" font-size="18" font-family="SegoeUI, Segoe UI"><tspan x="0" y="0">EXPRESS DELIVERY</tspan></text>
+  <g id="slide">
+    <circle id="Ellipse_2" data-name="Ellipse 2" cx="3" cy="3" r="3" transform="translate(155 614)" fill="#acbac3"/>
+    <circle id="Ellipse_3" data-name="Ellipse 3" cx="3" cy="3" r="3" transform="translate(176 614)" fill="#acbac3"/>
+    <rect id="Rectangle_24" data-name="Rectangle 24" width="23" height="6" rx="3" transform="translate(197 614)" fill="#7bcfe9"/>
+  </g>
+</svg>
