@@ -1,25 +1,5 @@
-<svg id="Onboarding_Page_3" data-name="Onboarding_Page 3" xmlns="http://www.w3.org/2000/svg" width="375" height="776" viewBox="0 0 375 776">
-  <g id="Phone_screen">
-    <rect id="Rectangle_2" data-name="Rectangle 2" width="375" height="33" fill="#fff"/>
-    <g id="battery">
-      <rect id="Rectangle_8" data-name="Rectangle 8" width="9.8" height="6.3" rx="1" transform="translate(325.8 13.8)" fill="#acbac3"/>
-      <g id="Group">
-        <path id="Vector" d="M323,12.887v8.039a1.889,1.889,0,0,0,1.887,1.887h14.6a1.889,1.889,0,0,0,1.887-1.887V12.887A1.889,1.889,0,0,0,339.488,11h-14.6A1.889,1.889,0,0,0,323,12.887Zm17.063,8.039a.575.575,0,0,1-.575.574h-14.6a.574.574,0,0,1-.574-.574V12.887a.574.574,0,0,1,.574-.574h14.6a.575.575,0,0,1,.575.574Z" fill="#acbac3"/>
-        <path id="Vector_2" d="M340.063,14.281v5.25a.656.656,0,0,0,.656.656h1.8A1.478,1.478,0,0,0,344,18.711V15.1a1.478,1.478,0,0,0-1.477-1.477h-1.8A.656.656,0,0,0,340.063,14.281Zm1.312,4.594V14.938h1.148a.165.165,0,0,1,.165.164v3.609a.165.165,0,0,1-.165.164Z" fill="#acbac3"/>
-      </g>
-    </g>
-    <g id="signal">
-      <path id="signal_2" d="M303.7,22.111c.388,0,.7-.212.7-.473V10.473c0-.261-.315-.473-.7-.473s-.7.212-.7.473V21.638C303,21.9,303.315,22.111,303.7,22.111Zm2.074-.473V12.389c0-.261.315-.473.7-.473s.7.212.7.473v9.249c0,.261-.315.473-.7.473S305.777,21.9,305.777,21.638Zm2.778,0V14.281c0-.261.314-.473.7-.473s.7.212.7.473v7.356c0,.261-.315.473-.7.473S308.555,21.9,308.555,21.638Zm2.777,0V16.174c0-.261.315-.473.7-.473s.7.212.7.473v5.464c0,.261-.314.473-.7.473S311.332,21.9,311.332,21.638Zm2.777,0V18.066c0-.261.315-.473.7-.473s.7.212.7.473v3.572c0,.261-.315.473-.7.473S314.109,21.9,314.109,21.638Z" fill="#acbac3"/>
-    </g>
-    <text id="_8:26" data-name="8:26" transform="translate(29 19.03)" fill="#acbac3" font-size="12" font-family="SegoeUI, Segoe UI"><tspan x="0" y="0">8:26</tspan></text>
-  </g>
-  <g id="Next_button">
-    <g id="Square">
-      <rect id="Rectangle_6" data-name="Rectangle 6" width="150" height="60" rx="30" transform="translate(196 716)" fill="#126881"/>
-    </g>
-    <text id="NEXT" transform="translate(244.317 751.138)" fill="#fff" font-size="14" font-family="Quicksand-Bold, Quicksand" font-weight="700"><tspan x="0" y="0">SIGN IN</tspan></text>
-  </g>
-  <g id="Illustration">
+<svg xmlns="http://www.w3.org/2000/svg" width="258.992" height="235.5" viewBox="0 0 258.992 235.5">
+  <g id="Illustration" transform="translate(-58 -116)">
     <path id="city_background" data-name="city background" d="M76.5,229H59a1,1,0,0,0-1,1v93.5a1,1,0,0,0,1,1H315.992a1,1,0,0,0,1-1V179.189a1,1,0,0,0-.644-.935l-25.491-9.736a1,1,0,0,0-1.357.934V212a1,1,0,0,1-1,1H269a1,1,0,0,1-1-1V187.52a1,1,0,0,0-1.4-.918l-27,11.638a1,1,0,0,0-.6.918V212a1,1,0,0,1-1,1H222a1,1,0,0,1-1-1V159a1,1,0,0,0-1-1h-6.5a1,1,0,0,1-1-1v-9.5a1,1,0,0,0-1-1h-6a1,1,0,0,1-1-1V131a1,1,0,0,0-1-1H202a1,1,0,0,1-1-1V117a1,1,0,0,0-1-1h-1.5a1,1,0,0,0-1,1v12a1,1,0,0,1-1,1H195a1,1,0,0,0-1,1v14.5a1,1,0,0,1-1,1h-7a1,1,0,0,0-1,1V157a1,1,0,0,1-1,1h-6a1,1,0,0,0-1,1v38.5a1,1,0,0,1-1,1H155a1,1,0,0,1-1-1V168.7a1,1,0,0,0-.657-.939l-29.5-10.77a1,1,0,0,0-1.343.94V218.5a1,1,0,0,1-1,1h-18a1,1,0,0,1-1-1v-19a1,1,0,0,0-1-1h-23a1,1,0,0,0-1,1V228A1,1,0,0,1,76.5,229Z" fill="#f6f6f7"/>
     <g id="Street">
       <rect id="Rectangle_186" data-name="Rectangle 186" width="59" height="3" rx="1.5" transform="translate(125 348.5)" fill="#acbac3"/>
@@ -95,11 +75,5 @@
     <path id="Line_01" d="M135,265.5H86" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="1"/>
     <path id="Line_02" d="M130,258.5H103" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="1"/>
     <path id="Line_03" d="M117,272.5H97" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="1"/>
-  </g>
-  <text id="EXPRESS_DELIVERY" data-name="EXPRESS DELIVERY" transform="translate(107.466 448.192)" fill="#57636f" font-size="18" font-family="SegoeUI, Segoe UI"><tspan x="0" y="0">EXPRESS DELIVERY</tspan></text>
-  <g id="slide">
-    <circle id="Ellipse_2" data-name="Ellipse 2" cx="3" cy="3" r="3" transform="translate(155 614)" fill="#acbac3"/>
-    <circle id="Ellipse_3" data-name="Ellipse 3" cx="3" cy="3" r="3" transform="translate(176 614)" fill="#acbac3"/>
-    <rect id="Rectangle_24" data-name="Rectangle 24" width="23" height="6" rx="3" transform="translate(197 614)" fill="#7bcfe9"/>
   </g>
 </svg>
