@@ -1,6 +1,8 @@
 import 'package:dot_now/screens/sign_in.dart';
+import 'package:dot_now/vx_state/vx_store.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:vxstate/vxstate.dart';
 
 class HomeScreen extends StatelessWidget {
   final _auth = FirebaseAuth.instance;
@@ -8,6 +10,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final store = VxState.store as MyStore;
     return Scaffold(
       body: Center(
         child: Column(
@@ -24,6 +27,7 @@ class HomeScreen extends StatelessWidget {
             ElevatedButton(
               onPressed: (() {
                 _auth.signOut();
+                store.auth.logout();
               }),
               child: const Text('Logout'),
             ),

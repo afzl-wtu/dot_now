@@ -1,12 +1,17 @@
+import 'package:dot_now/vx_state/vx_store.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_countdown_timer/current_remaining_time.dart';
+import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 
 import 'package:flutter_signin_button/button_list.dart';
 import 'package:flutter_signin_button/button_view.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:pinput/pinput.dart';
+import 'package:vxstate/vxstate.dart';
 
 import '../widgets/sliding_animation.dart';
 import '../widgets/large_round_button.dart';
@@ -28,8 +33,13 @@ class _SignInPageState extends State<SignInPage> {
   final _key = GlobalKey<FormState>();
   Auth _authType = Auth.signIn;
   bool _isWaitingForOTP = false;
+  bool _otpClicked = false;
+  bool _codeTimeOut = false;
+  bool _showCountDown = false;
+  bool _isOTPVerified = false;
   String _verificationId = '';
 
+  final fToast = FToast();
   final _phoneNumber = TextEditingController();
   final _password = TextEditingController();
   final _confirmPassword = TextEditingController();
@@ -44,14 +54,47 @@ class _SignInPageState extends State<SignInPage> {
         codeAutoRetrievalTimeout: _onCodeTimeout);
   }
 
+  @override
+  void initState() {
+    super.initState();
+    fToast.init(context);
+
+    _phoneNumber.addListener(() {
+      setState(() {});
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _phoneNumber.removeListener(() {});
+    _phoneNumber.dispose();
+    _password.dispose();
+    _confirmPassword.dispose();
+    _pin.dispose();
+    super.dispose();
+  }
+
   void _otpCompleted() async {
     PhoneAuthCredential _credential = PhoneAuthProvider.credential(
         verificationId: _verificationId, smsCode: _pin.text);
-    await _auth.signInWithCredential(_credential);
-    print('PP:Phone verification Completed');
+    try {
+      await _auth.signInWithCredential(_credential);
+      setState(() {
+        _isOTPVerified = true;
+        _isWaitingForOTP = false;
+      });
+    } on FirebaseAuthException catch (e) {
+      fToast.showToast(
+        child: Text(e.code),
+      );
+    }
   }
 
   void _onVerificationCompleted(PhoneAuthCredential authCredential) async {
+    setState(() {
+      _otpClicked = false;
+    });
     if (kDebugMode) {
       print("verification completed ${authCredential.smsCode}");
     }
@@ -71,10 +114,18 @@ class _SignInPageState extends State<SignInPage> {
           await _auth.signInWithCredential(authCredential);
         }
       }
+      setState(() {
+        _isOTPVerified = true;
+
+        _isWaitingForOTP = false;
+      });
     }
   }
 
   void _onVerificationFailed(FirebaseAuthException exception) {
+    setState(() {
+      _otpClicked = false;
+    });
     if (exception.code == 'invalid-phone-number') {
       if (kDebugMode) {
         print('Invalid Phone Number');
@@ -83,18 +134,41 @@ class _SignInPageState extends State<SignInPage> {
   }
 
   void _onCodeSent(String verificationId, int? forceResendingToken) {
-    _isWaitingForOTP = true;
-    _verificationId = verificationId;
-    setState(() {});
+    setState(() {
+      _otpClicked = false;
+      _showCountDown = true;
+      _isWaitingForOTP = true;
+      _verificationId = verificationId;
+    });
   }
 
   _onCodeTimeout(String timeout) {
+    setState(() {
+      _codeTimeOut = true;
+      _showCountDown = false;
+    });
     return null;
   }
 
   void _getOTP() async {
+    setState(() {
+      _otpClicked = true;
+    });
     final String a = '+92' + _phoneNumber.text.substring(1);
     await _phoneSignIn(phoneNumber: a);
+  }
+
+  Future<void> _signButton() async {
+    final _authStore = (VxState.store as MyStore).auth;
+    final String a = '+92' + _phoneNumber.text.substring(1);
+    if (_isOTPVerified &&
+        _password.text == _confirmPassword.text &&
+        _authType == Auth.signUp) {
+      await _authStore.signUpWithPhonePassword(a, _password.text);
+    }
+    if (a.length == 13 && _password.text.isNotEmpty) {
+      await _authStore.signInWithPhonePassword(a, _password.text);
+    }
   }
 
   Future<String?>? _signWithGoogle() async {
@@ -164,18 +238,67 @@ class _SignInPageState extends State<SignInPage> {
                 key: _key,
                 child: Column(
                   children: [
-                    CustomTextField(
-                      label: 'Phone Number',
-                      controller: _phoneNumber,
-                      suffix: _authType == Auth.signIn
-                          ? null
-                          : TextButton(
-                              onPressed: _getOTP,
-                              child: const Text(
-                                'Get OTP',
-                                style: TextStyle(color: Colors.pink),
-                              ),
-                            ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: CustomTextField(
+                            label: 'Phone Number',
+                            controller: _phoneNumber,
+                          ),
+                        ),
+                        if (_authType == Auth.signIn ||
+                            _phoneNumber.text.length != 12)
+                          Container()
+                        else
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            child: _otpClicked
+                                ? const SizedBox(
+                                    height: 15,
+                                    width: 15,
+                                    child: CircularProgressIndicator(
+                                      strokeWidth: 2,
+                                      color: Colors.pink,
+                                    ),
+                                  )
+                                : _isOTPVerified
+                                    ? const Icon(
+                                        Icons.done,
+                                        color: Colors.pink,
+                                      )
+                                    : _showCountDown
+                                        ? CountdownTimer(
+                                            widgetBuilder: (_,
+                                                    CurrentRemainingTime?
+                                                        time) =>
+                                                time == null
+                                                    ? const Text('Time is null')
+                                                    : Text(
+                                                        '00:${time.sec}',
+                                                        style: const TextStyle(
+                                                            color: Colors.pink),
+                                                      ),
+                                            textStyle: const TextStyle(
+                                                color: Colors.pink),
+                                            endTime: DateTime.now()
+                                                    .millisecondsSinceEpoch +
+                                                1000 * 30,
+                                          )
+                                        : TextButton(
+                                            style: const ButtonStyle(
+                                                splashFactory:
+                                                    NoSplash.splashFactory),
+                                            onPressed: _getOTP,
+                                            child: Text(
+                                              _codeTimeOut
+                                                  ? 'Get OTP Again'
+                                                  : 'Get OTP',
+                                              style: const TextStyle(
+                                                  color: Colors.pink),
+                                            ),
+                                          ),
+                          ),
+                      ],
                     ),
                     if (_isWaitingForOTP)
                       const SizedBox(
@@ -230,11 +353,15 @@ class _SignInPageState extends State<SignInPage> {
                     const SizedBox(
                       height: 20,
                     ),
-                    LargeRoundButton(
-                        fullLength: true,
-                        color: const Color(0xFF126881),
-                        text:
-                            (_authType == Auth.signUp) ? 'Sign Up' : 'Sign In'),
+                    InkWell(
+                      onTap: _signButton,
+                      child: LargeRoundButton(
+                          fullLength: true,
+                          color: const Color(0xFF126881),
+                          text: (_authType == Auth.signUp)
+                              ? 'Sign Up'
+                              : 'Sign In'),
+                    ),
                     const SizedBox(
                       height: 20,
                     ),

@@ -32,22 +32,12 @@ class _CustomTextFieldState extends State<CustomTextField> {
         ),
       ),
       child: TextFormField(
-        onChanged: (value) {
-          setState(() {
-            if (value.length == 12) {
-              showSuffix = true;
-            } else {
-              showSuffix = false;
-            }
-          });
-        },
         controller: widget.controller,
         keyboardType: widget.isPassword ? null : TextInputType.number,
         inputFormatters:
             widget.isPassword ? null : [TextInputMask(mask: '9999 9999999')],
         obscureText: widget.isPassword,
         decoration: InputDecoration(
-          suffix: showSuffix ? widget.suffix : null,
           contentPadding: const EdgeInsets.symmetric(horizontal: 20),
           label: Text(widget.label),
           border: UnderlineInputBorder(

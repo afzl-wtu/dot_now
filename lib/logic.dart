@@ -1,10 +1,12 @@
-import 'package:dot_now/screens/main_screen.dart';
+import 'package:dot_now/vx_state/vx_store.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:vxstate/vxstate.dart';
 
-import './screens/landing_page.dart';
+import 'screens/main_screen.dart';
+import 'screens/landing_page.dart';
 
 class Logic extends StatelessWidget {
   Logic({Key? key}) : super(key: key);
@@ -12,20 +14,17 @@ class Logic extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<User?>(
-        stream: _firebaseAuth.idTokenChanges(),
+    final store = VxState.store as MyStore;
+    return FutureBuilder(
+        future: store.auth.fetchUser(),
         builder: (_, snap) {
-          if (kDebugMode) {
-            print(
-                'PP: Connection State waiting: ${snap.connectionState == ConnectionState.waiting} , snap.data: ${snap.data} , snap.hasdata: ${snap.hasData}');
-          }
           return snap.connectionState == ConnectionState.waiting
               ? const Material(
                   child: Center(
                     child: CircularProgressIndicator(),
                   ),
                 )
-              : snap.data != null
+              : store.auth.user != null && _firebaseAuth.currentUser != null
                   ? HomeScreen()
                   : const LandingPage();
         });
