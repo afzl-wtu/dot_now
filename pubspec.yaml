@@ -36,16 +36,18 @@ dependencies:
   firebase_core: ^1.14.0
   flutter_countdown_timer: ^4.1.0
   firebase_database: ^9.0.9
-  flutter_facebook_auth: ^4.1.2
+  flutter_facebook_auth: ^4.0.1
   flutter_signin_button: ^2.0.0
   flutter_svg: ^1.0.3
   fluttertoast: ^8.0.9
   google_fonts: ^2.3.1
   google_sign_in: ^5.2.4
   introduction_screen: ^3.0.2
+  material_floating_search_bar: ^0.3.7
   pinput: ^2.2.7
   sembast: ^3.2.0
   sentry: ^6.4.0
+  shimmer: ^2.0.0
   vxstate: ^2.1.0
 
 dev_dependencies:

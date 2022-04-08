@@ -1,3 +1,4 @@
+import 'package:dot_now/screens/main_screen.dart';
 import 'package:dot_now/vx_state/vx_store.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
@@ -37,6 +38,7 @@ class _SignInPageState extends State<SignInPage> {
   bool _codeTimeOut = false;
   bool _showCountDown = false;
   bool _isOTPVerified = false;
+  bool _isSignButtonPressed = false;
   String _verificationId = '';
 
   final fToast = FToast();
@@ -80,6 +82,7 @@ class _SignInPageState extends State<SignInPage> {
         verificationId: _verificationId, smsCode: _pin.text);
     try {
       await _auth.signInWithCredential(_credential);
+      await FirebaseAuth.instance.signOut();
       setState(() {
         _isOTPVerified = true;
         _isWaitingForOTP = false;
@@ -106,6 +109,7 @@ class _SignInPageState extends State<SignInPage> {
         } else {
           await _auth.signInWithCredential(authCredential);
         }
+        await FirebaseAuth.instance.signOut();
       } on FirebaseAuthException catch (e) {
         if (e.code == 'provider-already-linked') {
           if (kDebugMode) {
@@ -116,7 +120,6 @@ class _SignInPageState extends State<SignInPage> {
       }
       setState(() {
         _isOTPVerified = true;
-
         _isWaitingForOTP = false;
       });
     }
@@ -159,16 +162,33 @@ class _SignInPageState extends State<SignInPage> {
   }
 
   Future<void> _signButton() async {
+    setState(() {
+      _isSignButtonPressed = true;
+    });
     final _authStore = (VxState.store as MyStore).auth;
     final String a = '+92' + _phoneNumber.text.substring(1);
     if (_isOTPVerified &&
         _password.text == _confirmPassword.text &&
         _authType == Auth.signUp) {
-      await _authStore.signUpWithPhonePassword(a, _password.text);
+      try {
+        await _authStore.signUpWithPhonePassword(a, _password.text);
+        Navigator.of(context)
+            .pushReplacement(MaterialPageRoute(builder: (_) => HomeScreen()));
+      } catch (e) {}
     }
-    if (a.length == 13 && _password.text.isNotEmpty) {
-      await _authStore.signInWithPhonePassword(a, _password.text);
+
+    if (a.length == 14 &&
+        _password.text.isNotEmpty &&
+        _authType == Auth.signIn) {
+      try {
+        await _authStore.signInWithPhonePassword(a, _password.text);
+        Navigator.of(context)
+            .pushReplacement(MaterialPageRoute(builder: (_) => HomeScreen()));
+      } catch (e) {}
     }
+    setState(() {
+      _isSignButtonPressed = false;
+    });
   }
 
   Future<String?>? _signWithGoogle() async {
@@ -185,19 +205,31 @@ class _SignInPageState extends State<SignInPage> {
 
     try {
       await _auth.signInWithCredential(credential);
+      Navigator.of(context)
+          .pushReplacement(MaterialPageRoute(builder: (_) => HomeScreen()));
     } catch (e) {
       return 'Error occured';
     }
+    return null;
   }
 
   Future<String?>? _signInWithFacebook() async {
-    final LoginResult result = await FacebookAuth.instance.login();
+    final LoginResult result = await FacebookAuth.instance
+        .login(loginBehavior: LoginBehavior.nativeWithFallback);
+    if (result.status == LoginStatus.success) {
+      print(' Logged In');
+    } else {
+      print('PP: result.status ${result.status}');
+      print('PP: result message: ${result.message}');
+    }
 
     final OAuthCredential facebookAuthCredential =
         FacebookAuthProvider.credential(result.accessToken!.token);
 
     try {
       await FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
+      Navigator.of(context)
+          .pushReplacement(MaterialPageRoute(builder: (_) => HomeScreen()));
     } catch (e) {
       return 'Error Ocured';
     }
@@ -354,13 +386,15 @@ class _SignInPageState extends State<SignInPage> {
                       height: 20,
                     ),
                     InkWell(
-                      onTap: _signButton,
+                      onTap: _isSignButtonPressed ? () {} : _signButton,
                       child: LargeRoundButton(
                           fullLength: true,
                           color: const Color(0xFF126881),
-                          text: (_authType == Auth.signUp)
-                              ? 'Sign Up'
-                              : 'Sign In'),
+                          text: _isSignButtonPressed
+                              ? 'Processing...'
+                              : (_authType == Auth.signUp)
+                                  ? 'Sign Up'
+                                  : 'Sign In'),
                     ),
                     const SizedBox(
                       height: 20,

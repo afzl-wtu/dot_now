@@ -1,3 +1,6 @@
+// ignore_for_file: dead_code
+
+import 'package:dot_now/screens/shopping_page.dart';
 import 'package:dot_now/vx_state/vx_store.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -18,15 +21,19 @@ class Logic extends StatelessWidget {
     return FutureBuilder(
         future: store.auth.fetchUser(),
         builder: (_, snap) {
-          return snap.connectionState == ConnectionState.waiting
-              ? const Material(
-                  child: Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                )
-              : store.auth.user != null && _firebaseAuth.currentUser != null
-                  ? HomeScreen()
-                  : const LandingPage();
+          return
+              // true
+              //     ? ShoppingPage()
+              //     :
+              snap.connectionState == ConnectionState.waiting
+                  ? const Material(
+                      child: Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    )
+                  : store.auth.user != null || _firebaseAuth.currentUser != null
+                      ? HomeScreen()
+                      : const LandingPage();
         });
   }
 }
