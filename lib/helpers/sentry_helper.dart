@@ -1,10 +1,8 @@
-import 'package:sentry/sentry.dart';
-
 class SentryHelper {
-  final exception;
-  final stackTrace;
+  // final exception;
+  // final stackTrace;
 
-  SentryHelper({this.exception, this.stackTrace});
+  // SentryHelper({this.exception, this.stackTrace});
 
   Future<void> report() async {
     // print(this.exception);

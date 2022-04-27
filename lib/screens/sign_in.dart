@@ -1,5 +1,5 @@
 import 'package:dot_now/screens/main_screen.dart';
-import 'package:dot_now/vx_state/vx_store.dart';
+import 'package:dot_now/core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -170,21 +170,17 @@ class _SignInPageState extends State<SignInPage> {
     if (_isOTPVerified &&
         _password.text == _confirmPassword.text &&
         _authType == Auth.signUp) {
-      try {
-        await _authStore.signUpWithPhonePassword(a, _password.text);
-        Navigator.of(context)
-            .pushReplacement(MaterialPageRoute(builder: (_) => HomeScreen()));
-      } catch (e) {}
+      await _authStore.signUpWithPhonePassword(a, _password.text);
+      Navigator.of(context)
+          .pushReplacement(MaterialPageRoute(builder: (_) => HomeScreen()));
     }
 
     if (a.length == 14 &&
         _password.text.isNotEmpty &&
         _authType == Auth.signIn) {
-      try {
-        await _authStore.signInWithPhonePassword(a, _password.text);
-        Navigator.of(context)
-            .pushReplacement(MaterialPageRoute(builder: (_) => HomeScreen()));
-      } catch (e) {}
+      await _authStore.signInWithPhonePassword(a, _password.text);
+      Navigator.of(context)
+          .pushReplacement(MaterialPageRoute(builder: (_) => HomeScreen()));
     }
     setState(() {
       _isSignButtonPressed = false;
@@ -213,26 +209,19 @@ class _SignInPageState extends State<SignInPage> {
     return null;
   }
 
-  Future<String?>? _signInWithFacebook() async {
+  Future<void> _signInWithFacebook() async {
     final LoginResult result = await FacebookAuth.instance
         .login(loginBehavior: LoginBehavior.nativeWithFallback);
-    if (result.status == LoginStatus.success) {
-      print(' Logged In');
-    } else {
-      print('PP: result.status ${result.status}');
-      print('PP: result message: ${result.message}');
-    }
 
     final OAuthCredential facebookAuthCredential =
         FacebookAuthProvider.credential(result.accessToken!.token);
 
-    try {
-      await FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
-      Navigator.of(context)
-          .pushReplacement(MaterialPageRoute(builder: (_) => HomeScreen()));
-    } catch (e) {
-      return 'Error Ocured';
-    }
+    await FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(
+        builder: (_) => HomeScreen(),
+      ),
+    );
   }
 
   @override
@@ -313,7 +302,7 @@ class _SignInPageState extends State<SignInPage> {
                                             textStyle: const TextStyle(
                                                 color: Colors.pink),
                                             endTime: DateTime.now()
-                                                    .millisecondsSinceEpoch +
+                                                    .microsecondsSinceEpoch +
                                                 1000 * 30,
                                           )
                                         : TextButton(
@@ -340,9 +329,7 @@ class _SignInPageState extends State<SignInPage> {
                         child: Pinput(
                           length: 6,
                           controller: _pin,
-                          onSubmitted: (s) {
-                            print('PP: onSubmitted, $s');
-                          },
+                          onSubmitted: (s) {},
                           onCompleted: (s) {
                             _otpCompleted();
                           },

@@ -1,5 +1,7 @@
+import 'package:dot_now/core.dart';
 import 'package:flutter/material.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
+import 'package:vxstate/vxstate.dart';
 
 Widget buildFloatingSearchBar(BuildContext context) {
   return FloatingSearchBar(
@@ -16,6 +18,9 @@ Widget buildFloatingSearchBar(BuildContext context) {
         ),
       )
     ],
+    onQueryChanged: (query) {
+      FetchSearchResultMutation(query);
+    },
     backdropColor: Colors.transparent,
     elevation: 0,
     builder: (_, __) => Container(
@@ -24,6 +29,19 @@ Widget buildFloatingSearchBar(BuildContext context) {
           color: Colors.white,
           borderRadius: BorderRadius.circular(20)),
       height: 400,
+      child: VxBuilder<MyStore>(
+        mutations: const {FetchSearchResultMutation},
+        builder: (_, store, ___) {
+          final _list = store.productManager.searchResults;
+          return ListView.builder(
+              itemCount: _list.length,
+              itemBuilder: (_, i) {
+                return ListTile(
+                  title: Text(store.productManager.searchResults[i].title),
+                );
+              });
+        },
+      ),
     ),
   );
 }

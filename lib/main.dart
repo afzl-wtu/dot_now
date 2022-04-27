@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:vxstate/vxstate.dart';
 
-import 'vx_state/vx_store.dart';
+import 'core.dart';
 import './logic.dart';
 
 void main() async {

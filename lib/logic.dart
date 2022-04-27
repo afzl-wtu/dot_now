@@ -1,8 +1,5 @@
 // ignore_for_file: dead_code
-
-import 'package:dot_now/screens/shopping_page.dart';
-import 'package:dot_now/vx_state/vx_store.dart';
-import 'package:flutter/foundation.dart';
+import 'package:dot_now/core.dart';
 import 'package:flutter/material.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
@@ -19,21 +16,20 @@ class Logic extends StatelessWidget {
   Widget build(BuildContext context) {
     final store = VxState.store as MyStore;
     return FutureBuilder(
-        future: store.auth.fetchUser(),
-        builder: (_, snap) {
-          return
-              // true
-              //     ? ShoppingPage()
-              //     :
-              snap.connectionState == ConnectionState.waiting
-                  ? const Material(
-                      child: Center(
-                        child: CircularProgressIndicator(),
-                      ),
-                    )
-                  : store.auth.user != null || _firebaseAuth.currentUser != null
-                      ? HomeScreen()
-                      : const LandingPage();
-        });
+      future: store.auth.fetchUser(),
+      builder: (_, snap) {
+        return true
+            ? HomeScreen()
+            : snap.connectionState == ConnectionState.waiting
+                ? const Material(
+                    child: Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                  )
+                : store.auth.user != null || _firebaseAuth.currentUser != null
+                    ? HomeScreen()
+                    : const LandingPage();
+      },
+    );
   }
 }

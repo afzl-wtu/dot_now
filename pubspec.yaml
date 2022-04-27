@@ -29,8 +29,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  carousel_slider: ^4.1.1
   cloud_firestore: ^3.1.11
   cupertino_icons: ^1.0.2
+  dot_navigation_bar: ^1.0.1+4
   easy_mask: ^2.0.1
   firebase_auth: ^3.3.12
   firebase_core: ^1.14.0
@@ -38,6 +40,7 @@ dependencies:
   firebase_database: ^9.0.9
   flutter_facebook_auth: ^4.0.1
   flutter_signin_button: ^2.0.0
+  smooth_star_rating_null_safety: ^1.0.4+2
   flutter_svg: ^1.0.3
   fluttertoast: ^8.0.9
   google_fonts: ^2.3.1
@@ -45,10 +48,13 @@ dependencies:
   introduction_screen: ^3.0.2
   material_floating_search_bar: ^0.3.7
   pinput: ^2.2.7
+  readmore: ^2.1.0
   sembast: ^3.2.0
   sentry: ^6.4.0
   shimmer: ^2.0.0
   vxstate: ^2.1.0
+  firebase_storage: ^10.2.12
+  cached_network_image: ^3.2.0
 
 dev_dependencies:
   flutter_test:
@@ -74,6 +80,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    - assets/svg/
     - assets/svg/landing_page/
   #   - images/a_dot_ham.jpeg
 

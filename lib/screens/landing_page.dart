@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_svg/flutter_svg.dart';
@@ -11,7 +12,7 @@ import 'sign_in.dart';
 class LandingPage extends StatefulWidget {
   const LandingPage({Key? key}) : super(key: key);
   static final _pageDecoration = PageDecoration(
-    footerPadding: const EdgeInsets.only(left: 24, right: 24, top: 160),
+    footerPadding: const EdgeInsets.only(left: 24, right: 24, top: 110),
     titleTextStyle:
         GoogleFonts.nunito(fontSize: 20, color: Colors.grey.shade700),
     bodyTextStyle: GoogleFonts.zillaSlab(
@@ -42,16 +43,20 @@ class _LandingPageState extends State<LandingPage> {
           body: 'asjdfkasjfkas askdjfklsladj askdjfd aksjd akkd akdsa'),
       PageViewModel(
           footer: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            padding: const EdgeInsets.symmetric(horizontal: 10.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 InkWell(
-                  onTap: () => Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(
-                      builder: (_) => HomeScreen(),
-                    ),
-                  ),
+                  onTap: () async {
+                    await FirebaseAuth.instance.signInAnonymously();
+
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        builder: (_) => HomeScreen(),
+                      ),
+                    );
+                  },
                   child: const LargeRoundButton(
                       color: Colors.deepOrange, text: 'Guest'),
                 ),
@@ -67,6 +72,7 @@ class _LandingPageState extends State<LandingPage> {
               ],
             ),
           ),
+          useScrollView: false,
           title: 'EXPRESS DELIVERY',
           image: SvgPicture.asset('assets/svg/landing_page/Illustration.svg'),
           decoration: LandingPage._pageDecoration,

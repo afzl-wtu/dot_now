@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class SlidingAnimation extends StatefulWidget {
   final Widget child;
   final bool active;
-  SlidingAnimation({Key? key, required this.child, required this.active})
+  const SlidingAnimation({Key? key, required this.child, required this.active})
       : super(key: key);
 
   @override
