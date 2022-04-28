@@ -1,4 +1,5 @@
 import 'package:dot_now/core.dart';
+import 'package:dot_now/screens/cart_page.dart';
 import 'package:flutter/material.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 import 'package:vxstate/vxstate.dart';
@@ -13,7 +14,10 @@ Widget buildFloatingSearchBar(BuildContext context) {
         showIfClosed: true,
         showIfOpened: false,
         child: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (_) => const CartPage()));
+          },
           icon: const Icon(Icons.shopping_cart),
         ),
       )

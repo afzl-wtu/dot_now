@@ -3,6 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dot_now/core.dart';
 import 'package:dot_now/models/cart.dart';
 import 'package:dot_now/widgets/large_round_button.dart';
+import 'package:dot_now/widgets/plus_minus_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:readmore/readmore.dart';
@@ -10,6 +11,7 @@ import 'package:smooth_star_rating_null_safety/smooth_star_rating_null_safety.da
 import 'package:vxstate/vxstate.dart';
 
 import '../models/product.dart';
+import 'cart_page.dart';
 
 class ProductDetailPage extends StatefulWidget {
   const ProductDetailPage(this.product, {Key? key}) : super(key: key);
@@ -21,9 +23,9 @@ class ProductDetailPage extends StatefulWidget {
 
 class _ProductDetailPageState extends State<ProductDetailPage> {
   final _controller = CarouselController();
-  final _quantityController = TextEditingController(text: '1');
   var _current = 0;
   var _rating = 4.5;
+  int _quantity = 1;
 
   @override
   void initState() {
@@ -31,9 +33,12 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
     super.initState();
   }
 
+  void _changeQuantity(int q) {
+    _quantity = q;
+  }
+
   @override
   void dispose() {
-    _quantityController.dispose();
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
         overlays: [SystemUiOverlay.top]);
     super.dispose();
@@ -87,7 +92,9 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                           ),
                         ),
                         IconButton(
-                          onPressed: () => Navigator.of(context).pop(),
+                          onPressed: () => Navigator.of(context).push(
+                              MaterialPageRoute(
+                                  builder: (_) => const CartPage())),
                           icon: const Icon(
                             Icons.shopping_cart,
                             color: Color(0xFFF36616),
@@ -223,54 +230,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     const Text('      Quantity'),
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        IconButton(
-                          onPressed: () {
-                            setState(() {
-                              _quantityController.text =
-                                  (int.parse(_quantityController.text) + 1)
-                                      .toString();
-                            });
-                          },
-                          icon: const Icon(Icons.add,
-                              size: 20, color: Color(0xFFF36616)),
-                        ),
-                        Container(
-                          color: const Color(0xFFF6F6F7),
-                          height: 25,
-                          width: 40,
-                          child: TextField(
-                            keyboardType: TextInputType.number,
-                            decoration: const InputDecoration(
-                                focusColor: Colors.transparent,
-                                enabledBorder: InputBorder.none),
-                            textAlign: TextAlign.center,
-                            controller: _quantityController,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                          child: IconButton(
-                              color: const Color(0xFFF36616),
-                              onPressed: int.parse(_quantityController.text) < 2
-                                  ? null
-                                  : () {
-                                      setState(() {
-                                        _quantityController.text = (int.parse(
-                                                    _quantityController.text) -
-                                                1)
-                                            .toString();
-                                      });
-                                    },
-                              icon: const Icon(
-                                Icons.remove,
-                                size: 20,
-                              )),
-                        ),
-                      ],
-                    )
+                    PlusMinusButton(_changeQuantity),
                   ],
                 ),
                 Padding(
@@ -319,8 +279,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                             .product.pictures[_current].color,
                                         product: widget.product,
                                         size: 'S',
-                                        quantity:
-                                            int.parse(_quantityController.text),
+                                        quantity: _quantity,
                                       ),
                                     );
                                   },
@@ -332,8 +291,16 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                   AddedCartItemMutation,
                                 },
                                 builder: (_, store, __) => store.loading
-                                    ? const CircularProgressIndicator(
-                                        color: Color(0xFFF36616),
+                                    ? const Padding(
+                                        padding: EdgeInsets.only(right: 40.0),
+                                        child: SizedBox(
+                                          height: 20,
+                                          width: 20,
+                                          child: CircularProgressIndicator(
+                                            strokeWidth: 3,
+                                            color: Color(0xFFF36616),
+                                          ),
+                                        ),
                                       )
                                     : const LargeRoundButton(
                                         color: Color(0xFFF36616),

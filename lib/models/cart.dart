@@ -45,7 +45,7 @@ class CartManger {
     await _databaseRef
         .ref('users/+92333 3333333/cart')
         .child(item.id.toString())
-        .set(item.toMap().remove('id'));
+        .set(item.toMap());
     // if (catToUpdate != null) {
     //   _categories.remove(catToUpdate);
     // }
@@ -65,7 +65,7 @@ class CartManger {
 
 class Cart {
   final Product product;
-  final int quantity;
+  int quantity;
   final String? size;
   final String color;
   final int id;
