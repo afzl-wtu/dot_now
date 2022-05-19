@@ -7,7 +7,9 @@ import 'package:vxstate/vxstate.dart';
 
 class CartWidget extends StatefulWidget {
   final Cart cartItem;
-  const CartWidget({Key? key, required this.cartItem}) : super(key: key);
+  final Function() refresh;
+  const CartWidget({Key? key, required this.cartItem, required this.refresh})
+      : super(key: key);
 
   @override
   State<CartWidget> createState() => _CartWidgetState();
@@ -15,8 +17,12 @@ class CartWidget extends StatefulWidget {
 
 class _CartWidgetState extends State<CartWidget> {
   void _changeQuantity(int q) {
+    if (widget.cartItem.product == null) return;
     setState(() {
-      widget.cartItem.quantity = q;
+      {
+        widget.cartItem.quantity = q;
+        UpdateCartItemQuantityMutation(widget.cartItem);
+      }
     });
   }
 
@@ -26,8 +32,11 @@ class _CartWidgetState extends State<CartWidget> {
     return Padding(
       padding: const EdgeInsets.only(top: 10.0),
       child: Dismissible(
-        onDismissed: (direction) =>
-            _cartManager.deleteCartItem(widget.cartItem),
+        onDismissed: (direction) {
+          _cartManager
+              .deleteCartItem(widget.cartItem)
+              .then((value) => widget.refresh());
+        },
         background: Container(color: Colors.red),
         key: Key(widget.cartItem.id.toString()),
         child: Card(
@@ -49,7 +58,10 @@ class _CartWidgetState extends State<CartWidget> {
                             borderRadius: BorderRadius.circular(10),
                             image: DecorationImage(
                               image: CachedNetworkImageProvider(
-                                widget.cartItem.product.pictures[0].image,
+                                widget.cartItem.product == null
+                                    ? 'https://cdn-icons-png.flaticon.com/128/2748/2748558.png'
+                                    : widget
+                                        .cartItem.product!.pictures[0].image,
                               ),
                             ),
                           ),
@@ -61,7 +73,9 @@ class _CartWidgetState extends State<CartWidget> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              widget.cartItem.product.title,
+                              widget.cartItem.product == null
+                                  ? 'Not Available'
+                                  : widget.cartItem.product!.title,
                               style: const TextStyle(
                                 color: Color(0xff707578),
                                 fontSize: 18,
@@ -91,7 +105,7 @@ class _CartWidgetState extends State<CartWidget> {
                               height: 10,
                             ),
                             Text(
-                              'Rs. ${widget.cartItem.product.price}',
+                              'Rs. ${widget.cartItem.product == null ? 0 : widget.cartItem.product!.price}',
                               style: const TextStyle(
                                 color: Color(0xff707578),
                                 fontSize: 16,
@@ -110,7 +124,8 @@ class _CartWidgetState extends State<CartWidget> {
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(left: 10.0),
-                        child: PlusMinusButton(_changeQuantity),
+                        child: PlusMinusButton(
+                            _changeQuantity, widget.cartItem.quantity),
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -132,7 +147,7 @@ class _CartWidgetState extends State<CartWidget> {
                               ),
                             ),
                             Text(
-                              '${widget.cartItem.quantity * widget.cartItem.product.price}',
+                              '${widget.cartItem.quantity * (widget.cartItem.product == null ? 0 : widget.cartItem.product!.price)}',
                               style: const TextStyle(
                                   color: Color(0xFFF36616), fontSize: 22),
                             )

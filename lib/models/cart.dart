@@ -1,15 +1,21 @@
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dot_now/models/product.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:vxstate/vxstate.dart';
+
+import '../core.dart';
 
 class CartManger {
   final List<Cart> _itemsInCart = [];
   List<Cart> get itemsInCart => _itemsInCart;
   final _databaseRef = FirebaseDatabase.instance;
+  final _fireStoreRef = FirebaseFirestore.instance.collection('products');
   CartManger() {
     fetchCartItems();
   }
+
   Future<void> fetchCartItems() async {
     final _snap = await _databaseRef
         .ref('users/+92333 3333333/cart')
@@ -22,11 +28,6 @@ class CartManger {
     final Map cart = _snap.value as Map;
     _itemsInCart.clear();
     cart.forEach((key, value) {
-      // product: Product.fromMap(map['product']),
-      // quantity: map['quantity']?.toInt() ?? 0,
-      // size: map['size'],
-      // color: map['color'] ?? '',
-      // id: map['id']?.toInt() ?? 0,
       _itemsInCart.add(
         Cart.fromMap(
           {
@@ -34,11 +35,31 @@ class CartManger {
             'color': value['color'],
             'size': value['size'],
             'quantity': value['quantity'],
-            'product': value['product'],
+            'productId': value['productId'],
           },
         ),
       );
     });
+    int i = 0;
+    await Future.forEach(_itemsInCart, (Cart element) async {
+      final _a = await _fireStoreRef.doc(element.productId).get();
+      if (!_a.exists) {
+        i++;
+        return;
+      }
+      final _b = Product.fromMap(_a.data()!);
+      _itemsInCart[i] = element.copyWith(product: _b);
+      i++;
+    });
+  }
+
+  Future<void> updateQuantity(Cart item) async {
+    await _databaseRef
+        .ref('users/+92333 3333333/cart')
+        .child(item.id.toString())
+        .update({'quantity': item.quantity});
+    _itemsInCart[_itemsInCart.indexWhere((element) => element.id == item.id)]
+        .quantity = item.quantity;
   }
 
   Future<void> addCartItem(Cart item) async {
@@ -64,7 +85,8 @@ class CartManger {
 }
 
 class Cart {
-  final Product product;
+  final String productId;
+  Product? product;
   int quantity;
   final String? size;
   final String color;
@@ -72,12 +94,14 @@ class Cart {
 
   Cart(
       {required this.id,
-      required this.product,
+      required this.productId,
       required this.quantity,
       this.size,
+      this.product,
       required this.color});
 
   Cart copyWith({
+    String? productId,
     Product? product,
     int? quantity,
     String? size,
@@ -85,6 +109,7 @@ class Cart {
     int? id,
   }) {
     return Cart(
+      productId: productId ?? this.productId,
       product: product ?? this.product,
       quantity: quantity ?? this.quantity,
       size: size ?? this.size,
@@ -96,7 +121,7 @@ class Cart {
   Map<String, dynamic> toMap() {
     final result = <String, dynamic>{};
 
-    result.addAll({'product': product.toMap()});
+    result.addAll({'productId': productId});
     result.addAll({'quantity': quantity});
     if (size != null) {
       result.addAll({'size': size});
@@ -108,9 +133,8 @@ class Cart {
   }
 
   factory Cart.fromMap(Map<String, dynamic> map) {
-    final productMap = Map<String, dynamic>.from(map['product']);
     return Cart(
-      product: Product.fromMap(productMap),
+      productId: map['productId'],
       quantity: map['quantity'],
       size: map['size'],
       color: map['color'] ?? '',
@@ -124,7 +148,7 @@ class Cart {
 
   @override
   String toString() {
-    return 'Cart(product: $product, quantity: $quantity, size: $size, color: $color, id: $id)';
+    return 'Cart(productId: $productId, quantity: $quantity, size: $size, color: $color, id: $id)';
   }
 
   @override
@@ -132,7 +156,7 @@ class Cart {
     if (identical(this, other)) return true;
 
     return other is Cart &&
-        other.product == product &&
+        other.productId == productId &&
         other.quantity == quantity &&
         other.size == size &&
         other.color == color &&
@@ -141,10 +165,20 @@ class Cart {
 
   @override
   int get hashCode {
-    return product.hashCode ^
+    return productId.hashCode ^
         quantity.hashCode ^
         size.hashCode ^
         color.hashCode ^
         id.hashCode;
+  }
+}
+
+class UpdateCartItemQuantityMutation extends VxMutation<MyStore> {
+  final Cart cartItem;
+  UpdateCartItemQuantityMutation(this.cartItem);
+  @override
+  Future<void> perform() async {
+    store!.loading = true;
+    await store!.cartManager.updateQuantity(cartItem);
   }
 }

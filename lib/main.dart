@@ -33,14 +33,18 @@ class MyApp extends StatelessWidget {
       ],
     );
 
-    SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle.light.copyWith(
-        statusBarColor: Colors.transparent,
-      ),
-    );
+    // SystemChrome.setSystemUIOverlayStyle(
+    //   SystemUiOverlayStyle.light.copyWith(
+    //     statusBarColor: Colors.transparent,
+    //   ),
+    // );
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Logic(),
+      theme: ThemeData(
+        appBarTheme:
+            const AppBarTheme(systemOverlayStyle: SystemUiOverlayStyle.light),
+      ),
     );
   }
 }

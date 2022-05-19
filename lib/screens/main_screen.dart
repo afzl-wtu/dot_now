@@ -24,7 +24,6 @@ class HomeScreen extends StatelessWidget {
       ),
       body: PageView(
         children: [
-          const ShoppingPage(),
           Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -52,6 +51,7 @@ class HomeScreen extends StatelessWidget {
               ],
             ),
           ),
+          const ShoppingPage(),
         ],
       ),
     );

@@ -1,15 +1,24 @@
 import 'package:dot_now/core.dart';
+import 'package:dot_now/models/cart.dart';
 import 'package:dot_now/widgets/cart_widget.dart';
 import 'package:dot_now/widgets/large_round_button.dart';
 import 'package:flutter/material.dart';
 import 'package:vxstate/vxstate.dart';
 
-class CartPage extends StatelessWidget {
+class CartPage extends StatefulWidget {
   const CartPage({Key? key}) : super(key: key);
 
   @override
+  State<CartPage> createState() => _CartPageState();
+}
+
+class _CartPageState extends State<CartPage> {
+  void refresh() {
+    setState(() {});
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final _cartManger = (VxState.store as MyStore).cartManager;
     return GestureDetector(
       onTap: () {
         FocusScopeNode currentFocus = FocusScope.of(context);
@@ -35,59 +44,74 @@ class CartPage extends StatelessWidget {
             ),
           ],
         ),
-        body: Column(
-          children: [
-            Expanded(
-              child: VxBuilder<MyStore>(
-                  mutations: const {AddCartItemMutation},
-                  builder: (_, store, __) {
-                    return ListView.builder(
-                      itemCount: store.cartManager.itemsInCart.length,
-                      itemBuilder: (_, i) => CartWidget(
-                          cartItem: store.cartManager.itemsInCart[i]),
-                    );
-                  }),
-            ),
-            Container(
-              height: 130,
-              width: double.infinity,
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(20),
-                  topRight: Radius.circular(20),
+        body: SafeArea(
+          child: Column(
+            children: [
+              Expanded(
+                child: VxBuilder<MyStore>(
+                    mutations: const {AddCartItemMutation},
+                    builder: (_, store, __) {
+                      return ListView.builder(
+                        itemCount: store.cartManager.itemsInCart.length,
+                        itemBuilder: (_, i) => CartWidget(
+                            cartItem: store.cartManager.itemsInCart[i],
+                            refresh: refresh),
+                      );
+                    }),
+              ),
+              Container(
+                height: 130,
+                width: double.infinity,
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(20),
+                    topRight: Radius.circular(20),
+                  ),
                 ),
-              ),
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        top: 8.0, left: 15, right: 15, bottom: 30),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text(
-                          'Sub Total:',
-                          style: TextStyle(fontSize: 24),
-                        ),
-                        Text(
-                          '${555555}',
-                          style: const TextStyle(fontSize: 24),
-                        ),
-                      ],
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          top: 8.0, left: 15, right: 15, bottom: 30),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text(
+                            'Sub Total:',
+                            style: TextStyle(fontSize: 24),
+                          ),
+                          VxBuilder<MyStore>(
+                              mutations: const {UpdateCartItemQuantityMutation},
+                              builder: (context, store, _) {
+                                var total = 0;
+                                for (var element
+                                    in store.cartManager.itemsInCart) {
+                                  total += element.quantity *
+                                      (element.product == null
+                                          ? 0
+                                          : element.product!.price);
+                                }
+                                return Text(
+                                  '$total',
+                                  style: const TextStyle(fontSize: 24),
+                                );
+                              }),
+                        ],
+                      ),
                     ),
-                  ),
-                  const LargeRoundButton(
-                      fullLength: true,
-                      color: Color(0xff126881),
-                      text: 'CHECK OUT'),
-                  const SizedBox(
-                    height: 1,
-                  ),
-                ],
-              ),
-            )
-          ],
+                    const LargeRoundButton(
+                        fullLength: true,
+                        color: Color(0xff126881),
+                        text: 'CHECK OUT'),
+                    const SizedBox(
+                      height: 1,
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

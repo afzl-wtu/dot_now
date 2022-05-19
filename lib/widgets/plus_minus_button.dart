@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 
 class PlusMinusButton extends StatefulWidget {
   final Function(int) updateBoxValue;
+  final int digit;
   const PlusMinusButton(
-    this.updateBoxValue, {
+    this.updateBoxValue,
+    this.digit, {
     Key? key,
   }) : super(key: key);
 
@@ -13,7 +15,13 @@ class PlusMinusButton extends StatefulWidget {
 }
 
 class _PlusMinusButtonState extends State<PlusMinusButton> {
-  final _quantityController = TextEditingController(text: '1');
+  late TextEditingController _quantityController;
+  @override
+  void initState() {
+    _quantityController = TextEditingController(text: '${widget.digit}');
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Row(

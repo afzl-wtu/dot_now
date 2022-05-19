@@ -230,7 +230,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     const Text('      Quantity'),
-                    PlusMinusButton(_changeQuantity),
+                    PlusMinusButton(_changeQuantity, 1),
                   ],
                 ),
                 Padding(
@@ -277,7 +277,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                             .microsecondsSinceEpoch,
                                         color: widget
                                             .product.pictures[_current].color,
-                                        product: widget.product,
+                                        productId: widget.product.id,
                                         size: 'S',
                                         quantity: _quantity,
                                       ),
