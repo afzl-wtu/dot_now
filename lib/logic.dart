@@ -1,4 +1,3 @@
-// ignore_for_file: dead_code
 import 'package:dot_now/core.dart';
 import 'package:flutter/material.dart';
 
@@ -18,17 +17,15 @@ class Logic extends StatelessWidget {
     return FutureBuilder(
       future: store.auth.fetchUser(),
       builder: (_, snap) {
-        return true
-            ? HomeScreen()
-            : snap.connectionState == ConnectionState.waiting
-                ? const Material(
-                    child: Center(
-                      child: CircularProgressIndicator(),
-                    ),
-                  )
-                : store.auth.user != null || _firebaseAuth.currentUser != null
-                    ? HomeScreen()
-                    : const LandingPage();
+        return snap.connectionState == ConnectionState.waiting
+            ? const Material(
+                child: Center(
+                  child: CircularProgressIndicator(),
+                ),
+              )
+            : store.auth.user != null || _firebaseAuth.currentUser != null
+                ? HomeScreen()
+                : const LandingPage();
       },
     );
   }

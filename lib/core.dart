@@ -38,15 +38,6 @@ class AddCartItemMutation extends VxMutation<MyStore> {
   AddCartItemMutation(this.cartItem);
   @override
   Future<void> perform() async {
-    store!.loading = true;
     await store!.cartManager.addCartItem(cartItem);
-    AddedCartItemMutation();
-  }
-}
-
-class AddedCartItemMutation extends VxMutation<MyStore> {
-  @override
-  void perform() {
-    store!.loading = false;
   }
 }

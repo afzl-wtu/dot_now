@@ -63,6 +63,17 @@ class CartManger {
   }
 
   Future<void> addCartItem(Cart item) async {
+    final _oldIndex = _itemsInCart.indexWhere((e) =>
+        (e.productId == item.productId &&
+            e.color == item.color &&
+            e.size == item.size));
+    if (_oldIndex != -1) {
+      final _oldQuantity = _itemsInCart[_oldIndex].quantity;
+      final _a = _itemsInCart[_oldIndex]
+          .copyWith(quantity: _oldQuantity + item.quantity);
+      UpdateCartItemQuantityMutation(_a);
+      return;
+    }
     await _databaseRef
         .ref('users/+92333 3333333/cart')
         .child(item.id.toString())

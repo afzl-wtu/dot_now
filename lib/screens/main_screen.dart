@@ -24,33 +24,33 @@ class HomeScreen extends StatelessWidget {
       ),
       body: PageView(
         children: [
-          Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                const Text(
-                  'Welcome',
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                ElevatedButton(
-                  onPressed: (() {
-                    _auth.signOut();
-                    store.auth.logout();
-                    Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(
-                        builder: (_) => const SignInPage(),
-                      ),
-                    );
-                  }),
-                  child: const Text('Logout'),
-                ),
-              ],
-            ),
-          ),
+          // Center(
+          //   child: Column(
+          //     mainAxisAlignment: MainAxisAlignment.center,
+          //     crossAxisAlignment: CrossAxisAlignment.center,
+          //     children: [
+          //       const Text(
+          //         'Welcome',
+          //         textAlign: TextAlign.center,
+          //       ),
+          //       const SizedBox(
+          //         height: 10,
+          //       ),
+          //       ElevatedButton(
+          //         onPressed: (() {
+          //           _auth.signOut();
+          //           store.auth.logout();
+          //           Navigator.of(context).pushReplacement(
+          //             MaterialPageRoute(
+          //               builder: (_) => const SignInPage(),
+          //             ),
+          //           );
+          //         }),
+          //         child: const Text('Logout'),
+          //       ),
+          //     ],
+          //   ),
+          // ),
           const ShoppingPage(),
         ],
       ),

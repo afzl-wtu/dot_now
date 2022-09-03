@@ -21,12 +21,15 @@ class CategoryPreview extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.only(right: 8.0),
-            child: Container(
-              height: 70,
-              width: 70,
-              color: Colors.white,
-              child:
-                  SvgPicture.string(cat.image), //SvgPicture.network(cat.image),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: Container(
+                height: 70,
+                width: 70,
+                color: Colors.white,
+                child: SvgPicture.string(
+                    cat.image), //SvgPicture.network(cat.image),
+              ),
             ),
           ),
           const SizedBox(
@@ -51,13 +54,16 @@ class ShimmerCategoryPreview extends StatelessWidget {
       children: [
         Padding(
             padding: const EdgeInsets.only(right: 8.0),
-            child: Shimmer.fromColors(
-              baseColor: const Color(0xFF051f27),
-              highlightColor: const Color(0xff41869a),
-              child: Container(
-                height: 70,
-                width: 70,
-                color: Colors.white,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: Shimmer.fromColors(
+                baseColor: const Color(0xFF051f27),
+                highlightColor: const Color(0xff41869a),
+                child: Container(
+                  height: 70,
+                  width: 70,
+                  color: Colors.white,
+                ),
               ),
             )),
         const SizedBox(

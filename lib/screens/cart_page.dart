@@ -1,5 +1,6 @@
 import 'package:dot_now/core.dart';
 import 'package:dot_now/models/cart.dart';
+import 'package:dot_now/screens/check_out_page.dart';
 import 'package:dot_now/widgets/cart_widget.dart';
 import 'package:dot_now/widgets/large_round_button.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +14,7 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> {
+  late int total;
   void refresh() {
     setState(() {});
   }
@@ -84,7 +86,7 @@ class _CartPageState extends State<CartPage> {
                           VxBuilder<MyStore>(
                               mutations: const {UpdateCartItemQuantityMutation},
                               builder: (context, store, _) {
-                                var total = 0;
+                                total = 0;
                                 for (var element
                                     in store.cartManager.itemsInCart) {
                                   total += element.quantity *
@@ -100,10 +102,14 @@ class _CartPageState extends State<CartPage> {
                         ],
                       ),
                     ),
-                    const LargeRoundButton(
-                        fullLength: true,
-                        color: Color(0xff126881),
-                        text: 'CHECK OUT'),
+                    InkWell(
+                      onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                          builder: (_) => CheckOutPage(cartTotal: total))),
+                      child: const LargeRoundButton(
+                          fullLength: true,
+                          color: Color(0xff126881),
+                          text: 'CHECK OUT'),
+                    ),
                     const SizedBox(
                       height: 1,
                     ),

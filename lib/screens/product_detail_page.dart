@@ -26,6 +26,8 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
   var _current = 0;
   var _rating = 4.5;
   int _quantity = 1;
+  var _addingToCart = false;
+  var _addingToCartFirstTime = false;
 
   @override
   void initState() {
@@ -268,43 +270,61 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                             const LargeRoundButton(
                                 color: Color(0xFFF36616), text: 'Search Local'),
                             InkWell(
-                              onTap: () {
-                                setState(
-                                  () {
-                                    AddCartItemMutation(
-                                      Cart(
-                                        id: DateTime.now()
-                                            .microsecondsSinceEpoch,
-                                        color: widget
-                                            .product.pictures[_current].color,
-                                        productId: widget.product.id,
-                                        size: 'S',
-                                        quantity: _quantity,
-                                      ),
-                                    );
-                                  },
-                                );
-                              },
+                              onTap: _addingToCart
+                                  ? null
+                                  : () {
+                                      AddCartItemMutation(
+                                        Cart(
+                                          id: DateTime.now()
+                                              .microsecondsSinceEpoch,
+                                          color: widget
+                                              .product.pictures[_current].color,
+                                          productId: widget.product.id,
+                                          product: widget.product,
+                                          size: 'S',
+                                          quantity: _quantity,
+                                        ),
+                                      );
+                                      _addingToCart = true;
+                                    },
                               child: VxBuilder<MyStore>(
                                 mutations: const {
                                   AddCartItemMutation,
-                                  AddedCartItemMutation,
                                 },
-                                builder: (_, store, __) => store.loading
-                                    ? const Padding(
-                                        padding: EdgeInsets.only(right: 40.0),
-                                        child: SizedBox(
-                                          height: 20,
-                                          width: 20,
-                                          child: CircularProgressIndicator(
-                                            strokeWidth: 3,
-                                            color: Color(0xFFF36616),
-                                          ),
-                                        ),
-                                      )
-                                    : const LargeRoundButton(
-                                        color: Color(0xFFF36616),
-                                        text: 'Add to Cart'),
+                                builder: (_, store, __) {
+                                  print(
+                                      'PP: In VxBuilder: _addingToCart: $_addingToCart, _addingToCartFirstTime: $_addingToCartFirstTime');
+
+                                  print(
+                                      'PP: before actual Widget: _addingToCart: $_addingToCart');
+                                  return _addingToCart
+                                      ? Builder(builder: (context) {
+                                          if (_addingToCart &&
+                                              !_addingToCartFirstTime) {
+                                            _addingToCartFirstTime = true;
+                                          }
+                                          if (_addingToCart &&
+                                              _addingToCartFirstTime) {
+                                            _addingToCartFirstTime = false;
+                                            _addingToCart = false;
+                                          }
+                                          return const Padding(
+                                            padding:
+                                                EdgeInsets.only(right: 40.0),
+                                            child: SizedBox(
+                                              height: 20,
+                                              width: 20,
+                                              child: CircularProgressIndicator(
+                                                strokeWidth: 3,
+                                                color: Color(0xFFF36616),
+                                              ),
+                                            ),
+                                          );
+                                        })
+                                      : const LargeRoundButton(
+                                          color: Color(0xFFF36616),
+                                          text: 'Add to Cart');
+                                },
                               ),
                             ),
                           ],
