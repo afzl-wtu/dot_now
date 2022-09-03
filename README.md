@@ -1,16 +1,12 @@
 # dot_now
+An Ecommerce App.
 
-A new Flutter project.
+# Features
+1. Shimmer Effect
+2. Facebook, Google , phone Number and Guest Auth
 
-## Getting Started
+I worked earlier in a team dot_now. After a long time I made this push now just only for my portfolio. Many things are broken.
 
-This project is a starting point for a Flutter application.
+# Preview:
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![image1](https://user-images.githubusercontent.com/64379149/188264868-5b1ad77a-8e16-4b03-82a7-7068ea79facc.jpeg)
